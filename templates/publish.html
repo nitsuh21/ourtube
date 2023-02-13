@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <script data-ad-client="ca-pub-3310235347677100" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static '/assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static '/assets/img/favicon.png' %}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Ours Tube
+  </title>''''''''
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="{% static '/assets/css/material-dashboard.css' %}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{% static '/assets/demo/demo.css' %}" rel="stylesheet" />
+</head>
+
+<body class="dark-edition">
+    <h1>make payment</h1>
+  <div class="wrapper ">
+    <div class="card" style="width: 38rem;">
+        <iframe src="https://www.youtube.com/embed/{{Video.vid_id}}" frameborder="0"  height="300px"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="card-body" >
+          <h5 class="card-title"><strong>{{Video.vid_title}}</strong></h5>
+          <p class="card-text"><strong>Per min price: </strong>{{Video.price}} birr</p>
+          <p class="card-text">Service fee: {{Video.service_fee}} birr</p>
+          <p class="card-text">Total price: {{Video.total_price}} birr</p>
+          <p class="card-text">Paid for: {{Video.watchtime}} watch times</p>
+          <p class="card-text">Played : {{Video.current_watchedtime}} times</p>
+          <p class="card-text">Duration: {{Video.duration}} minuntes</p>
+          </div>
+     </div>
+     <div id="payment_buttons">
+        <form method="post" action="https://test.yenepay.com/">
+            <input type="hidden" name="Process" value="Express">
+            <!--A unique identifier for the payment order. Yenepay will attach it to the order and
+                echo it back when sending you any inforamtion about the order. To let the customer complete
+                unfinished order you can send it again with the same order info-->
+            <input type="hidden" name="MerchantOrderId" value="">
+            <!--Your yenepay merchant code-->
+            <input type="hidden" name="MerchantId" value="SB0697">
+            <!-- The ipn url that you want yenepay to send you ipn messages to. Note localhost is not accepted here-->
+            <input type="hidden" name="IPNUrl" value="">
+            <!-- The url in your website or application that you want yenepay to redirect the customer after completing their payment. Note localhost is not accepted here-->
+            <input type="hidden" name="SuccessUrl" value="https://ourstube.herokuapp.com/accounts/users/creator/confirm_yenepay/{{Video.vid_id}}">
+            <!-- The url in your website or application that you want yenepay to redirect the customer when canceling their payment. Note localhost is not accepted here-->
+            <input type="hidden" name="CancelUrl" value="https://ourstube.herokuapp.com/accounts/users/creator/upload">
+            <!--A unique identifier for each item in the order. You can leave this blank if you want too.-->
+            <input type="hidden" name="ItemId" value="d2948529-b217-43c9-bbed-f3aab5d9771c">
+            <!--The name for the item that that your customer is paying for-->
+            <input type="hidden" name="ItemName" value="Test Item 1">
+            <!--The unit price for the item this must be a positive decimal number and can not be empty or zero-->
+            <input type="hidden" name="UnitPrice" value="{{Video.total_price}}">
+            <!--The quantity for the item this must be a positive integer number with minimum value of 1-->
+            <!--The total price for the item will be determined by multiplying UnitPrice x Quantity for the item-->
+            <input type="hidden" name="Quantity" value="1">
+            <!--Submit button-->
+            <input type="submit" id="button" @submit="submit()" value="pay with YENE PAY" class="btn btn-primary">
+        </form>
+        <div id="paypal-button-container"></div>
+     </div>
+  </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AVdwLpxJJFLwmdO5GpYA5tSMabI9Cnhvyqng3jZd5lmlxGBP2C1C4vZmd8XVY4ZmP1Z1VcyfGWTmdWrL&currency=USD"></script>
+
+  <script>
+      // Render the PayPal button into #paypal-button-container
+      function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+      var csrftoken = getCookie('csrftoken');
+      var total = '{{Video.total_price}}'
+      var vid_id = '{{Video.vid_id}}'
+
+      function complete_payment(){
+          var url = "{% url 'confirm' %}"
+          fetch(url,{
+              method : 'POST',
+              headers:{
+                  'Content-type':'application/json',
+                  'X-CSRFToken': csrftoken
+              },
+              body : JSON.stringify({'vid_id':vid_id})
+          })
+      }
+
+      paypal.Buttons({
+          // Set up the transaction
+          createOrder: function(data, actions) {
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: total
+                      }
+                  }]
+              });
+          },
+          // Finalize the transaction
+          onApprove: function(data, actions) {
+              return actions.order.capture().then(function(details) {
+                  // Show a success message to the buyer
+                  complete_payment()
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+              });
+          }
+
+
+      }).render('#paypal-button-container');
+
+      function submit(){
+        complete_payment()
+    }
+  </script>
+  <!--   Core JS Files   -->
+  <script src="{% static '/assets/js/core/jquery.min.js' %}"></script>
+  <script src="{% static '/assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static '/assets/js/core/bootstrap-material-design.min.js' %}"></script>
+  <script src="https://unpkg.com/default-passive-events"></script>
+  <script src="{% static '/assets/js/plugins/perfect-scrollbar.jquery.min.js' %}"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chartist JS -->
+  <script src="{% static '/assets/js/plugins/chartist.min.js' %}"></script>
+  <!--  Notifications Plugin    -->
+  <script src="{% static '/assets/js/plugins/bootstrap-notify.js' %}"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static '/assets/js/material-dashboard.js' %}"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="{% static '/assets/demo/demo.js' %}"></script>
+
+  <script type="text/javascript">
+  </script>
+  <style>
+    .container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+    }
+    
+    /* Then style the iframe to fit in the container div with full height and width */
+    .responsive-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 60%;
+      float:right;
+    }
+    #button{
+        width: 100%;
+        font-size: large;
+    }
+    #payment_buttons{
+        width: 50%;
+    }
+  </style>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script data-ad-client="ca-pub-3310235347677100" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>news letter</title>
+</head>
+<body>
+    <div class="d-block">
+        <form action="newsletters" method="post">
+            {% csrf_token %}
+            <label for="subject">subject:</label>
+            <input type="text" class="form-control" name="subject" id="" required>
+            <label for="message">message:</label>
+            <textarea name="message" class="form-control" id="" cols="30" rows="10"></textarea>
+            <input type="submit" value="send" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,568 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script data-ad-client="ca-pub-3310235347677100" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <title>OursTube</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: BizPage - v4.0.0
+  * Template URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-transparent">
+    <div class="container-fluid">
+
+      <div class="row justify-content-center">
+        <div class="col-xl-11 d-flex align-items-center">
+          <h1 class="logo mr-auto"><a href="{% url 'home' %}">OursTube</a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+          <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li class="active">{% if user.is_authenticated %}
+                <a href="{% url 'profile' %}">Home</a>
+                {% endif %}
+              </li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Services</a></li>
+              
+              {% if user.is_authenticated %}
+              <li><a id="namec" href="{% url 'my_profile' %}">{{user.username}}</a></li>
+              <li><a href="accounts/logout" >Sign out</a></li>
+              {% else %}
+              <li><a href="accounts/register" >Sign up</a></li>
+              <li><a href="accounts/login">Sign in</a></li>
+              {% endif %}
+              <li><a href="accounts/termsofservice">Terms of service</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+
+            </ul>
+          </nav><!-- .nav-menu -->
+        </div>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Intro Section ======= -->
+  <section id="intro">
+    <div class="intro-container">
+      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url(static/assets/img/intro-carousel/1.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Welcome to OursTube</h2>
+                <p class="animate__animated animate__fadeInUp">boost your channel or get paid just for watching</p>
+                <a href="{% url 'login' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(static/assets/img/intro-carousel/2.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Boost your youtube channel with a small payment</h2>
+                <p class="animate__animated animate__fadeInUp">upload videos and get more views by our viewers</p>
+                <a href="{% url 'login' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(static/assets/img/intro-carousel/3.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Enjoying plus working</h2>
+                <p class="animate__animated animate__fadeInUp">we have alot of video collection that you can enjoying while working and get some extra cash in no time</p>
+                <a href="{% url 'login' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(static/assets/img/intro-carousel/4.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">view, audiences, anaylisis and subscriptions</h2>
+                <p class="animate__animated animate__fadeInUp">views, audiences , anaylisis,  and subscriptions by just posting a video link</p>
+                <a href="{% url 'login' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url(static/assets/img/intro-carousel/5.jpg)">
+            <div class="carousel-container">
+              <div class="container">
+                <h2 class="animate__animated animate__fadeInDown">Easy payment methods</h2>
+                <p class="animate__animated animate__fadeInUp">we integrate Yenepay for ETB currency and paypal for USD. Pay and receives money in minutes</p>
+                <a href="{% url 'login' %}" class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Intro Section -->
+
+  <main id="main">
+
+    <!-- ======= Featured Services Section Section ======= -->
+    <section id="featured-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="">Store</a></h4>
+            <p class="description">Entertain your self and get paid  by watching unlimited videos.</p>
+          </div>
+
+          <div class="col-lg-4 box box-bg">
+            <i class="ion-ios-stopwatch-outline"></i>
+            <h4 class="title"><a href="">Time</a></h4>
+            <p class="description">Use your time! get new audiences. </p>
+          </div>
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="">Love</a></h4>
+            <p class="description">Make new friends who understand the value of you work.</p>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Featured Services Section -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>About Us</h3>
+          <p></p>
+        </header>
+
+        <div class="row about-cols">
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-col">
+              <div class="img">
+                <img src="{% static 'assets/img/about-mission.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Mission</a></h2>
+              <p>
+               We admire smart work and creativity. We are not trying only to give you infinity views and Subscribers ruther to give your work more qudience
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="about-col">
+              <div class="img">
+                <img src="{% static 'assets/img/about-plan.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-list-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Plan</a></h2>
+              <p>
+                If you are looking for enjoying and working in the mean time, you are at the right place.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="about-col">
+              <div class="img">
+                <img src="{% static 'assets/img/about-vision.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Vision</a></h2>
+              <p>
+               our intension is to provide online businesses specially for developing countries.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header wow fadeInUp">
+          <h3>Services</h3>
+         <h4><strong>How does this work?</strong></h4>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+            <h4 class="title"><a href="">sign up methods</a></h4>
+            <p class="description">When you sign up for the service make sure what kind of user you are. if You have youtube channels to boost up by paying few amount choose 
+              <strong>CREATOR</strong> box if you are here to watch videos and get some cash choose <strong>VIEWER </strong>box. ther
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+            <h4 class="title"><a href="">Upload Videos</a></h4>
+            <p class="description">if You are a creator, all you need is your Youtube video url. You can simply pass it and make your video viewed by our viewers
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="ion-ios-paper-outline"></i></div>
+            <h4 class="title"><a href="">pricing</a></h4>
+            <p class="description">Creator pay every time they upload a video. The great news is you are the ones who decide how much to pay
+              you specify how much money you want to pay per a minute for a video, and how many times you want it to be watched. 
+              You can check out the bill before paying.
+              you will have unlimited free subscriptions and audiences as long as your have video in our site.
+            </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <h4 class="title"><a href="">upload limits</a></h4>
+            <p class="description">You can post a video only once in a mean time. but unlimted different videos. This is intended to keep your videos legit for youtube
+              as we said we are not trying to give you infinity views ruther a more chance to be viewed. 
+              as soon as the watching times you specified lasts your video will be removed for viewers and will be stored in your history for you to repost it.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
+            <h4 class="title"><a href="">Paying methods</a></h4>
+            <p class="description">We are sure you are wondering the payment methods. we got international paying platform like <strong>Paypal</strong></p>
+          </div>
+          <div class="col-lg-4 col-md-6 box" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <h4 class="title"><a href="">withdrawal</a></h4>
+            <p class="description">for our viewers withdrawal is pretty simple. all you have to do is view full videos based on your choices,
+              and subscribe to our creators right on Ours Tube. You only get paid for viewing the videos. Subscriptions are mandatory when withdrwaing your money.
+              You can use <strong>paypal</strong>,<strong>credit cards</strong>
+            <strong>and Cbe, Amole and Hellocash</strong> for our Ethiopian users.
+            </p>
+        
+      </div>
+    </section><!-- End Call To Action Section -->
+
+    <!-- ======= Facts Section ======= -->
+    <section id="facts">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>Facts</h3>
+          <p>currently we have</p>
+        </header>
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{viewers}}</span>
+            <p>Viewers</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{creators}}</span>
+            <p>Creators</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{videos}}</span>
+            <p>Videos</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{payment}}</span>
+            <p>Paid amount</p>
+          </div>
+
+        </div>
+
+        <div class="facts-img">
+          <img src="{% static 'assets/img/portfolio/app3.jpg' %}" alt="" class="">
+        </div>
+
+      </div>
+    </section><!-- End Facts Section -->
+
+
+
+    <!-- ======= Our Clients Section ======= -->
+    <section id="clients">
+      <div class="container" data-aos="zoom-in">
+
+        <header class="section-header">
+          <h3>Our Clients</h3>
+        </header>
+
+        <div class="owl-carousel clients-carousel">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+          <img src="https://lh3.googleusercontent.com/proxy/X0vvwPQ10yTvBuzrf_Sj8VnEC3hkFqtpynvrjxZOVx-lWJkcGC0djND31R2nQ8sHU8FIYAAzrjlPJnAxfmoXDUfdWLODQCU6Cija2TWpF34N" alt="">
+        </div>
+
+      </div>
+    </section><!-- End Our Clients Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>Testimonials</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel">
+     
+          {% for testimony in testimony %}
+          <div class="testimonial-item">
+            <img src="{{testimony.profile_url}}" class="testimonial-img" alt="">
+            <h3>{{testimony.user.username}}</h3>
+            <h4>{{testimony.user.role}}</h4>
+            <p>
+              <img src="{% static 'assets/img/quote-sign-left.png' %}" class="quote-sign-left" alt="">
+             {{testimony.Testimony}}
+              <img src="{% static 'assets/img/quote-sign-right.png' %}" class="quote-sign-right" alt="">
+            </p>
+          </div>
+          {% endfor %}
+     
+        </div>
+        <br>
+        {% if request.user.is_authenticated %}
+        <form action="accounts/testimony" method="POST">
+          {% csrf_token %}
+          <textarea class="form-control" name="testimony" style="border-color : black" rows="5"></textarea>
+          <br>
+          <input type="submit" class="form-control btn btn-dark" value="Add Your Testomony">
+        </form>
+        {% endif %}
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>Contact Us</h3>
+          <p>contact us for more information</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>Addis Ababa, Ethiopia</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+155895548855">+2519 ---------</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:ourtubedevteam@gmail.com">ourtubedevteam@gmail.com</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form">
+          <form action="accounts/sendmeemail" method="post" role="form" class="php-email-form">
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validate"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validate"></div>
+            </div>
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your message has been sent. Thank you!</div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>Ours Tube</h3>
+            <p>We are pleased by working with you</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="accounts/termsofservice">Terms of service</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Adiss Ababa<br>
+              Ethiopia<br>
+              <strong>Phone:</strong> +2519 --------- <br>
+              <strong>Email:</strong> ourtubedevteam@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="https://www.youtube.com/channel/UC-aSR9RrjgfnI6g6Ewbn25Q" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>please subscribe to keep updated</p>
+            <form action="newsletter/newssubscribe" method="post">
+              {% csrf_token %}
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Ours Tube <strong>Official website</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
+      -->
+        Designed by <a href="">Meteorites Technologies</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <style>
+    #namec{
+      background-color: green;
+       color: white;
+       font-size: 100%
+     }
+  </style>
+</body>
+
+</html>
